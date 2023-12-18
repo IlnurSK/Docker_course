@@ -4,7 +4,7 @@ COPY  ./todo-list/package.json ./package.json
 RUN npm i   
 
 COPY ./todo-list ./
-RUN npm run BUILD
+RUN npm run build
 
 #!!!
 FROM nginx
