@@ -1,0 +1,14 @@
+FROM node:17 AS BUILD
+WORKDIR /app
+COPY  ./todo-list/package.json ./package.json
+RUN npm i   
+
+COPY ./todo-list ./
+RUN npm run BUILD
+
+#!!!
+FROM nginx
+
+COPY --from=BUILD /app/dist/index.html /nginx/static/index.html
+COPY --from=BUILD /app/dist/static/css /nginx/static/
+COPY --from=BUILD /app/dist/static/hs /nginx/static/

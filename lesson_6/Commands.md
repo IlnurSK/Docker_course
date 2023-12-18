@@ -43,6 +43,6 @@ docker run --rm -d \
 ## Делаем запросы к бекенду
 
 ```shell
-curl -X PUT localhost:8000/api -H 'Content-Type: application/json' -d '{"text":"Buy cheese","status":"active"}'
+curl -X PUT localhost:8000/api -H 'Content-Type: application/json' -d '{"text":"Buy beer","status":"active"}'
 curl localhost:8000/api
 ```
