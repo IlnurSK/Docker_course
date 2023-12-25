@@ -1,2 +1,79 @@
-name: Peter
-age: 32
+#name: Peter
+#age: 32
+
+#name:
+#  Peter
+#  Olga
+
+#name: Peter Olga
+
+#name: |
+#  Peter
+#  Olga
+
+#name: >
+#  Peter
+#  Olga
+
+#name:
+#  - Peter
+#  - Olga
+
+#name:
+#   Peter: 32
+#   Olga: 32
+
+# postgres:
+#   user: postgres_app_user
+#   password: postgres_app_password
+#   host: postgres_host
+#   port: 5432
+# clickhouse:
+#   host: clickhouse_host
+#   user: clickhouse_app_user
+#   db: clickhouse_app_db
+#   password: clickhouse_app_password
+
+# stages:
+#   - style
+#   - test
+# linters:
+#   stage: style
+#   script: 
+#     - isort --check --diff src/*
+#     - flake8 src/*
+# test:
+#   stage: test
+#   script: 
+#     - pytest src/test.py
+
+
+# x-eukaryotes:
+#   &eu-organelles
+#     organelles:
+#       - nucleus
+#       - mitochondria
+#       - endoplasmic reticulum
+#       - Golgi apparatus
+#       - ribosomes
+#       - cytoskeleton
+
+version: "3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: test
+    volumes:
+      - pg_vol:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    ports:
+      - 80:8080
+
+volumes:
+  pg_vol:
