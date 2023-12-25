@@ -7,6 +7,5 @@ RUN go build
 FROM ubuntu:22.04
 WORKDIR /app
 EXPOSE 5000
-COPY --from=APP /app/main.go /app/main/main.go
-COPY --from=APP /app/go.mod /app/main/go.mod
+COPY --from=APP /app/main /app/main
 ENTRYPOINT ["/app/main"]
