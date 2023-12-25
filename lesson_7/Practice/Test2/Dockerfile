@@ -8,4 +8,5 @@ FROM ubuntu:22.04
 WORKDIR /app
 EXPOSE 5000
 COPY --from=APP /app/main.go /app/main.go
+COPY --from=APP /app/go.mod /app/go.mod
 ENTRYPOINT ["/app/main"]
