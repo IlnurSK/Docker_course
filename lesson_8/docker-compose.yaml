@@ -95,6 +95,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 3
+    deploy:
+      replicas: 3
   backend:
     image: 7_back
     # container_name: backend
