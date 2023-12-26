@@ -99,7 +99,7 @@ services:
     image: 7_back
     # container_name: backend
     environment:
-      HOST: database
+      HOST: db
       PORT: 5432
       DB: docker_app_db
       DB_USERNAME: docker_app
