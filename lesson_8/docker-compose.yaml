@@ -58,22 +58,58 @@
 #       - ribosomes
 #       - cytoskeleton
 
-version: "3"
+# version: "3"
+# services:
+#   db:
+#     image: postgres
+#     environment:
+#       POSTGRES_PASSWORD: admin
+#       POSTGRES_USER: admin
+#       POSTGRES_DB: test
+#     volumes:
+#       - pg_vol:/var/lib/postgresql/data
+#   adminer:
+#     image: adminer
+#     ports:
+#       - 80:8080
+# volumes:
+#   pg_vol:
+version: '3'
 
 services:
   db:
-    image: postgres
+    image: 7_database
+    container_name: database
     environment:
-      POSTGRES_PASSWORD: admin
-      POSTGRES_USER: admin
-      POSTGRES_DB: test
+      POSTGRES_DB: docker_app_db
+      POSTGRES_USER: docker_app
+      POSTGRES_PASSWORD: docker_app
     volumes:
-      - pg_vol:/var/lib/postgresql/data
-
-  adminer:
-    image: adminer
+      - todo_db:/var/lib/postgresql/data
+    networks:
+      - todo_net
+  backend:
+    image: 7_back
+    container_name: backend
+    environment:
+      HOST: database
+      PORT: 5432
+      DB: docker_app_db
+      DB_USERNAME: docker_app
+      DB_PASSWORD: docker_app
+    networks:
+      - todo_net
+  nginx:
+    image: 7_nginx
+    container_name: frontend
+    networks:
+      - todo_net
     ports:
-      - 80:8080
-
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 volumes:
-  pg_vol:
+  todo_db:
+    name: todo_db
+networks:
+  name: todo_net
