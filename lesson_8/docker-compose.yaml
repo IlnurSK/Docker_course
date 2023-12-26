@@ -74,6 +74,7 @@
 #       - 80:8080
 # volumes:
 #   pg_vol:
+
 version: '3'
 
 services:
@@ -86,8 +87,8 @@ services:
       POSTGRES_PASSWORD: docker_app
     volumes:
       - todo_db:/var/lib/postgresql/data
-    networks:
-      - todo_net
+    # networks:
+    #   - todo_net
     restart: always
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-U", "docker_app"]
@@ -103,8 +104,8 @@ services:
       DB: docker_app_db
       DB_USERNAME: docker_app
       DB_PASSWORD: docker_app
-    networks:
-      - todo_net
+    # networks:
+    #   - todo_net
     healthcheck:
       test: ["CMD", "curl", "--fail", "localhost:8000/test"]
       interval: 5s
@@ -116,8 +117,8 @@ services:
   nginx:
     image: 7_nginx
     container_name: frontend
-    networks:
-      - todo_net
+    # networks:
+    #   - todo_net
     ports:
       - 80:80
     volumes:
@@ -130,6 +131,6 @@ services:
 volumes:
   todo_db:
     name: todo_db
-networks:
-  todo_net:
-    name: todo_net
+# networks:
+#   todo_net:
+#     name: todo_net
