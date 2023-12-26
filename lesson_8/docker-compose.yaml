@@ -80,7 +80,7 @@ version: '3'
 services:
   db:
     image: 7_database
-    container_name: database
+    # container_name: database
     environment:
       POSTGRES_DB: docker_app_db
       POSTGRES_USER: docker_app
@@ -97,7 +97,7 @@ services:
       retries: 3
   backend:
     image: 7_back
-    container_name: backend
+    # container_name: backend
     environment:
       HOST: database
       PORT: 5432
@@ -116,7 +116,7 @@ services:
         condition: service_healthy
   nginx:
     image: 7_nginx
-    container_name: frontend
+    # container_name: frontend
     # networks:
     #   - todo_net
     ports:
