@@ -1,6 +1,6 @@
 FROM ubuntu:22.04 AS base
-RUN mkdir /app
-RUN echo "Some text" > /app/file.txt
+RUN mkdir /App
+RUN echo "Some text" > /App/file.txt
 
 FROM ubuntu:22.04 AS debug
 WORKDIR src
